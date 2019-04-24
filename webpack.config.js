@@ -5,6 +5,14 @@ module.exports = {
   entry: {
     main: './src/main.js'
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  },
   output: {
     filename: '[name].[hash].js',
     path: `${__dirname}/build`

@@ -1,3 +1,5 @@
+import './main.css';
+
 import _ from 'lodash';
 
 function component() {
@@ -5,9 +7,10 @@ function component() {
   element.innerHTML = _.join(['Project Maitri', 'Started'], ' ');
   return element;
 }
-function createIframe(src) {
+function createIframe(src, cls) {
   var frame = document.createElement('iframe');
   frame.src = src;
+  frame.classList.add(cls);
 
   frame.onload = function() {
     // If this is a Chrome content script, contentWindow is offlimits.
@@ -17,5 +20,5 @@ function createIframe(src) {
   document.body.appendChild(frame);
 }
 document.body.appendChild(component());
-createIframe('http://localhost:3000');
-createIframe('http://localhost:4200');
+createIframe('http://localhost:3000', 'frame1');
+createIframe('http://localhost:4200', 'frame2');
