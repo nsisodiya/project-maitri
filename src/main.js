@@ -1,12 +1,5 @@
 import './main.css';
 
-import _ from 'lodash';
-
-function component() {
-  const element = document.createElement('h1');
-  element.innerHTML = _.join(['Project Maitri', 'Started'], ' ');
-  return element;
-}
 function createIframe(src, cls) {
   var frame = document.createElement('iframe');
   frame.src = src;
@@ -19,6 +12,5 @@ function createIframe(src, cls) {
 
   document.body.appendChild(frame);
 }
-document.body.appendChild(component());
 createIframe('http://localhost:3000', 'frame1');
 createIframe('http://localhost:4200', 'frame2');
