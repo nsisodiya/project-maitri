@@ -1,5 +1,12 @@
 html {
-  background: white
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+html, body, #root {
+  background: white;
+  height: 100vh;
 }
 body {
   margin: 0;
