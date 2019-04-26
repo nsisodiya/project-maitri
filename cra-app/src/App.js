@@ -9,8 +9,8 @@ function Home() {
   return <h2>This is Home Page</h2>;
 }
 
-function About() {
-  return <h2>This is About Page</h2>;
+function SettingPage() {
+  return <h2>This is Setting Page</h2>;
 }
 
 function Users() {
@@ -21,13 +21,13 @@ function App() {
     <BrowserRouter>
       <div className='App'>
         <header className='App-header'>
-          <h1>Project Maitri</h1>
+          <h1>Project Maitri (React Codebase)</h1>
         </header>
         <div style={{ flexGrow: 1, display: 'flex' }}>
           <Nav />
           <div style={{ flexGrow: 1, background: 'cadetblue' }}>
             <Route path='/' exact component={Home} />
-            <Route path='/about/' component={About} />
+            <Route path='/settings/' component={SettingPage} />
             <Route path='/users/' component={Users} />
           </div>
         </div>

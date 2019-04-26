@@ -16,6 +16,9 @@ export default class Nav extends Component {
           <li>
             <Link to='/users/'>Users</Link>
           </li>
+          <li>
+            <Link to='/settings/'>Settings</Link>
+          </li>
         </ul>
       </nav>
     );

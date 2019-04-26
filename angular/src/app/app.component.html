@@ -1,37 +1,46 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class='app'>
-    <app-header></app-header>
-  <div class="app-wrap">  
+  <app-header></app-header>
+  <div class="app-wrap">
     <div class="nav-container">
       <ul>
         <li>
-<a
-          [routerLink]="['/home']"
-          routerLinkActive="active"
-        >
-          Home
-        </a>
+          <a
+            [routerLink]="['/home']"
+            routerLinkActive="active">
+            Home
+          </a>
         </li>
         <li>
-  <a
-          [routerLink]="['/about']"
-          routerLinkActive="active"
-        >
-          About
-        </a>
+          <a
+            [routerLink]="['/about']"
+            routerLinkActive="active">
+            About
+          </a>
+        </li>
+        <li>
+          <a
+            [routerLink]="['/users']"
+            routerLinkActive="active">
+            Users
+          </a>
+        </li>
+        <li>
+          <a
+            [routerLink]="['/settings']"
+            routerLinkActive="active">
+            Settings
+          </a>
         </li>
       </ul>
-       
-       
+
+
     </div>
     <div class="router-outlet">
- <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
     </div>
-    
+
   </div>
 
- 
+
 </div>
-
-
-
