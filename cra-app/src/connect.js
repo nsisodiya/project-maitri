@@ -3,11 +3,14 @@ import UniBus from './UniBus';
 const bridge = new UniBus();
 
 bridge.on('FROM_Parent', function(param1, param2) {
-  console.log('Message received from Parent', typeof param1, param1, param2);
+  console.log('Message received from Parent inside Frame1', typeof param1, param1, param2);
 });
 
 bridge.on('FROM_IFRAME1', function(param1, param2) {
   console.log('This was published and catched inside iframe1', typeof param1, param1, param2);
+});
+bridge.on('FROM_IFRAME2', function(param1, param2) {
+  console.log('Iframe to Iframe Communication - Received FROM_IFRAME2 on frame1', typeof param1, param1, param2);
 });
 
 window.setTimeout(function() {

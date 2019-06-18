@@ -10,11 +10,11 @@ const bridge = new UniBus({
 });
 
 var x = bridge.on('FROM_IFRAME1', function(param1, param2) {
-  console.log('Message received from iFrame1', typeof param1, param1, param2);
+  console.log('Message received from iFrame1 inside Parent', typeof param1, param1, param2);
 });
 
 var x = bridge.on('FROM_IFRAME2', function(param1, param2) {
-  console.log('Message received from iFrame2', typeof param1, param1, param2);
+  console.log('Message received from iFrame2 inside Parent', typeof param1, param1, param2);
 });
 
 bridge.on('FROM_Parent', function(param1, param2) {

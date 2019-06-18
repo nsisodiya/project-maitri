@@ -12,15 +12,18 @@ class UniBus {
   constructor({ iframes } = {}) {
     console.log('Creating Bus instance');
     this.insideIframe = isInsideIframe();
-    this.iframes = iframes;
+    this.iframes = iframes || [];
+    window.__UNIBUS__TOPLEVEL__IFRAMES = this.iframes;
     this._topicList = {};
     window.addEventListener('message', this._receiveMessage.bind(this), false);
     //TODO un-subscribe
   }
   _receiveMessage(event) {
+    //TODO - origin check - if (~event.origin.indexOf('http://yoursite.com')) {
     if (event.data.sender === __UniBus__) {
       const { topic, data } = event.data;
       this._spreadMessage(topic, data);
+      //TODO - WE have received this message from some iframe, we need to send this message to other iframe
     }
   }
   _spreadMessage(topic, ...args) {
@@ -49,8 +52,17 @@ class UniBus {
     };
   }
   emit(topic, ...args) {
+    console.log('EMIT MESSAGE', topic);
+    //Publish on Iframes or other things.
+    var targets = [];
     if (this.insideIframe) {
-      window.parent.postMessage(
+      targets = [window.parent];
+      //console.log('__UNIBUS__TOPLEVEL__IFRAMES', window.parent.__UNIBUS__TOPLEVEL__IFRAMES);
+    } else {
+      targets = this.iframes.map((f) => f.contentWindow);
+    }
+    targets.forEach((t) => {
+      t.postMessage(
         {
           sender: __UniBus__,
           topic,
@@ -58,22 +70,9 @@ class UniBus {
         },
         '*'
       );
-    } else {
-      //We are in main thread, now, send event to iframes
-      if (this.iframes) {
-        //TODO - this code is repeated. better created array of target to be published.
-        this.iframes.forEach((frame) => {
-          frame.contentWindow.postMessage(
-            {
-              sender: __UniBus__,
-              topic,
-              data: args
-            },
-            '*'
-          );
-        });
-      }
-    }
+    });
+    //Publish message here itself to spread inside the frames
+    this._spreadMessage(topic, args);
   }
 }
 export default UniBus;
